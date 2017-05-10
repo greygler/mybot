@@ -63,7 +63,7 @@ foreach ($jdata['entry'] as $entry)
 										//$about['is_payment_enabled'] - Указывает, сможет ли пользователь получать сообщения об оплате от платформы Messenger
 										//$about['db'] - Если $about['db']='ok' - данные взяты из базы
 										 fwrite($f, "Прошли About...\n");
-	if (($about['db']!='ok') AND ($about['first_name']!='') AND ($text_mess!='')) {
+	if (($about['db']!='ok') AND ($about['first_name']!='')) {
 		if ($text_mess!="") $text2="Первое сообщение пользователя «{$about['first_name']} {$about['last_name']}»: «{$text_mess}»"; else $text2="Пользователь «{$about['first_name']} {$about['last_name']}» присоединился по кнопке: «{$postback}»";
 		$result[]=send::notification($about, "Служебное уведомление.\nК боту подключился новый пользователь",$text2);
 		}

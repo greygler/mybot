@@ -1,37 +1,7 @@
 <?
 class Bot_case
 {
-	private function event($product, $day, $month, $year, $user_id)
-	{
-		db::connect_db(DB_HOST,DB_NAME,DB_LOGIN,DB_PASS);
-		//if (date('d'),date('m'),date("Y"))
-		$db="SELECT * FROM `event` WHERE (product='{$product}' AND day='{$day}' AND month='{$month}' AND year='{$year}')";
-		$result = mysql_query($db);
-		$myrow = mysql_fetch_array($result);
-		$result_array[]=send::send_mess($user_id, "!".$myrow['0']['id']);
-		if ($myrow['0']['id']!="") {
-		$event=array();
-		do
-			{
-				$event_element=array(
-					'name' => $myrow['name'],
-					'description' => $myrow['description'],
-					'location' => $myrow['location'],
-					'time' => $myrow['hour'].":".$myrow['minute'],
-					'hour' => $myrow['hour'],
-					
-					'price' =>   $myrow['price'],
-					'pic' =>   $myrow['pic'],
-					'url' => $myrow['url'],
-					);
-				$event[]=$event_element;
-			}
-		while ($myrow = mysql_fetch_array($result)); 
-			return $event; }
-			else return 0;
-	}
-	
-	
+		
 	
 		
 	public function bot_case_func($command,  $options, $text_mess, $user_id, $entry_id, $about, $last_message)
@@ -42,13 +12,20 @@ class Bot_case
 			
 				switch ($command)
 				{
-					case "HELLO";
-				
-				    $result[]=Send::send_mess($user_id, "Привет. Меня зовут ".BOT_NAME."Тебя зовут - {$about['first_name']} {$about['last_name']}\nБот работает успешно!");
-				
+					case "HELLO"; // Стартовое сообщение для пуска бота. В дальнейшем можно убрать
+						if ($last_message!="") $send_last_message="Ваше последнее сообщение - «{$last_message}»";
+						else $send_last_message="Это Ваше первое сообщение.";
+						$hello="Привет. Это бот. Меня зовут «".BOT_NAME."»\n Мой ID: {$entry_id}.\n Тебя зовут {$about['first_name'] } {$about['last_name']},\nТвой ID: {$user_id}\n\n{$send_last_message}\n\nБот работает успешно!";
+						$result_array[]=send::send_mess($user_id, $hello  );
 					break;		
+					
+					case "STICKER"; // Реакция на стикер
+					
+						$result_array[]=send::send_mess($user_id,"Благодарю за стикер!");
+					
+					break;	
 
-				/* 
+					/* 
 					case "КОМАНДА"
 					
 						Команды

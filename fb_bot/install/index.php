@@ -29,7 +29,7 @@ for ($i=0; $i<$key_dir; $i++) $dir_abs.=$abs_dir_explode[$i]."/";
  
   <h1>Инсталяция FB-бота на домене <br><strong><?= $_SERVER['SERVER_NAME'] ?></strong></h1>
  
-    <form class="form" action="inst_save.php" enctype="multipart/form-data" method="POST">
+    <form class="form" action="inst_save.php#webhook" enctype="multipart/form-data" method="POST">
 
 <fieldset>
     <legend><h2>&#160;<i class="fa fa-info-circle"></i>&#160;Общие сведения:&#160; </h2></legend>

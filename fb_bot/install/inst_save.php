@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">   
 	<link href="style.css" rel="stylesheet">
  <style>
-.form{width: 850px; margin: auto auto auto;}
+.form{width: 850px; margin: 0 auto auto auto;}
 .form input, textarea {width: 549px;}
+.form label {width: 300px}
+form fieldset {border-color:red !important;}
 </style>  
   </head>
   <body>
@@ -67,8 +69,13 @@ include ("create_db.php");
 
 ?>
 </p></center>
-<form class="form" action="install.php">
+<form id="webhook" class="form" action="install.php">
+<fieldset>
+<legend><font color="red"><strong>Введи данные в WebHook в панели разработчика, подтверди его и жми кнопку ДАЛЕЕ >>> </strong></font> </legend>
+<label for="url">Поле "URL обратного вызова":</label><input id="url" readonly type="text" value="https://<?= $_POST['name_server'][0]."/".$_POST['dir'][0].$_POST['bot_file'][0] ?>" ><br>
+<label for="token">Поле "Подтвердить маркер":</label><input id="token" readonly type="text" value="<?= $_POST['verify_token'][0] ?>" >
+</fieldset>
 <input class="save" type="submit" value="&#10004; Далее >>>"></p><br>
 
   </form>
- <font color="red"><strong>Теперь подтвердите WebHook в панели разработчика и жми кнопку ДАЛЕЕ >>> </strong></font>
+ 

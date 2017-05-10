@@ -430,7 +430,7 @@ class Send
 		$myrow = mysql_fetch_array($result);
 		do if ($myrow['user_id']!="")
 		{
-			$result_send="\tОтправка данных для {$myrow['first_name']} {$myrow['last_name']} ".send::send_mess($myrow['user_id'], "{$text}\n{$about['first_name']} {$about['last_name']}\nПол: {$about['gender']}\nЛокаль: {$about['locale']}\nЧасовой пояс: {$about['timezone']}\n" );
+			$result_send="\tОтправка данных для {$myrow['first_name']} {$myrow['last_name']}\n\t".send::send_mess($myrow['user_id'], "{$text}\n{$about['first_name']} {$about['last_name']}\nПол: {$about['gender']}\nЛокаль: {$about['locale']}\nЧасовой пояс: {$about['timezone']}\n" );
 			$result_send.="\n\tОтправка фото: ".send::send_img($myrow['user_id'], $about['profile_pic']);
 			$result_send.="\n\tПервое сообщение: ".send::send_mess($myrow['user_id'], "{$text2}\n" );
 		}
